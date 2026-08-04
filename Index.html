@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Politecnico Máximo Gómez | Boletín de Calificaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-container">
+    <!-- VISTA LOGIN -->
+    <div id="loginView">
+        <div class="card login-card">
+            <div class="intec-header">
+                <h1>Politecnico Máximo Gómez</h1>
+                <div class="logo-container">
+                    <img src="logo1.png" alt="Logo" class="logo-politecnico" onerror="this.style.display='none'">
+                </div>
+            </div>
+            
+            <div class="login-section">
+                <h3>Iniciar Sesión</h3>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Usuario</label>
+                        <input type="text" id="username" placeholder="usuario" autocomplete="off" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" id="password" placeholder="contraseña" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Ingresar</button>
+                </form>
+                <div id="loginError" class="error-msg" style="display: none;"></div>
+            </div>
+
+            
+
+            <div class="footer-note">
+                Sistema de Boletín Académico
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE REGISTRO -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrar Nuevo Usuario</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="regFullName" placeholder="Nombre y apellido" required>
+                </div>
+                <div class="input-group">
+                    <label>Usuario</label>
+                    <input type="text" id="regUsername" placeholder="usuario" required>
+                </div>
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="regPassword" placeholder="contraseña" required>
+                </div>
+                <div class="input-group">
+                    <label>Grado</label>
+                    <select id="regGrade">
+                        <option value="4to">4to Año</option>
+                        <option value="5to">5to Año</option>
+                        <option value="6to">6to Año</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Sección</label>
+                    <select id="regSection">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Carrera</label>
+                    <select id="regCareer">
+                        <option value="Informatica">Informática</option>
+                        <option value="Mercadeo">Mercadeo</option>
+                        <option value="Industrias">Industrias</option>
+                        <option value="Contabilidad">Contabilidad</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Registrarse</button>
+                <div id="registerSuccess" class="success-msg" style="display: none;"></div>
+                <div id="registerError" class="error-msg" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- VISTA BOLETÍN -->
+    <div id="gradesView" style="display: none;">
+        <div class="card dashboard-card">
+            <div class="student-header">
+                <div class="student-info">
+                    <h2 id="studentName">Cargando...</h2>
+                    <p id="studentDetails"></p>
+                </div>
+                <div class="header-actions">
+                    <button id="logoutButton" class="logout-btn">Salir</button>
+                </div>
+            </div>
+
+            <div class="grade-title">
+                <h3>CALIFICACIONES DE RENDIMIENTO</h3>
+            </div>
+
+            <div class="table-responsive">
+                <table class="boletin-table main-table">
+                    <thead>
+                        <tr>
+                            <th rowspan="3">ÁREAS CURRICULARES</th>
+                            <th colspan="4">COMPETENCIA COMUNICATIVA</th>
+                            <th colspan="4">PENSAMIENTO LÓGICO, CREATIVO Y CRÍTICO / RESOLUCIÓN DE PROBLEMAS</th>
+                            <th colspan="4">CIENTÍFICA Y TECNOLÓGICA / AMBIENTAL Y DE LA SALUD</th>
+                            <th colspan="4">CIENTÍFICA Y TECNOLÓGICA / AMBIENTAL Y DE LA SALUD</th>
+                            <th colspan="4">PROMEDIO GRUPO</th>
+                            <th rowspan="3">CALIFICACIÓN FINAL</th>
+                        </tr>
+                        <tr>
+                            <th colspan="4"></th>
+                            <th colspan="4"></th>
+                            <th colspan="4"></th>
+                            <th colspan="4"></th>
+                            <th colspan="4"></th>
+                        </tr>
+                        <tr>
+                            <th>P1</th><th>P2</th><th>P3</th><th>P4</th>
+                            <th>P1</th><th>P2</th><th>P3</th><th>P4</th>
+                            <th>P1</th><th>P2</th><th>P3</th><th>P4</th>
+                            <th>P1</th><th>P2</th><th>P3</th><th>P4</th>
+                            <th>PC1</th><th>PC2</th><th>PC3</th><th>PC4</th>
+                        </tr>
+                    </thead>
+                    <tbody id="competenciasBody"></tbody>
+                    <tfoot id="competenciasFooter">
+                        <tr class="average-row">
+                            <td colspan="17"><strong>PROMEDIO GENERAL</strong></td>
+                            <td id="promedioPC1" class="promedio-general">--</td>
+                            <td id="promedioPC2" class="promedio-general">--</td>
+                            <td id="promedioPC3" class="promedio-general">--</td>
+                            <td id="promedioPC4" class="promedio-general">--</td>
+                            <td id="promedioFinalGeneral" class="promedio-general">--</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="grade-section">
+                <h3>PROGRAMA DE COMPETENCIAS ESPECÍFICAS / MÓDULOS</h3>
+                <div class="table-responsive">
+                    <table class="boletin-table modulos-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">MÓDULOS</th>
+                                <th colspan="10">RESULTADOS DE APRENDIZAJE (RA)</th>
+                                <th rowspan="2">TOTAL</th>
+                            </tr>
+                            <tr>
+                                <th>RA1</th><th>RA2</th><th>RA3</th><th>RA4</th><th>RA5</th>
+                                <th>RA6</th><th>RA7</th><th>RA8</th><th>RA9</th><th>RA10</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modulosBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grade-section">
+                <h3>RESUMEN DE ASISTENCIA DEL ALUMNO</h3>
+                <div class="table-responsive">
+                    <table class="boletin-table small-table">
+                        <thead>
+                            <tr><th>Períodos</th><th>Asistencia</th><th>Ausencia</th></tr>
+                        </thead>
+                        <tbody id="asistenciaBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="legend">
+                <p><strong>P1-P4:</strong> Calificaciones por período | <strong>PC1-PC4:</strong> Promedios por grupo | <strong>RA:</strong> Resultado de Aprendizaje | <strong>≥70:</strong> Aprobado</p>
+            </div>
+            
+            <div class="footer-note">
+                <p>Maestro(a) encargado(a) del grado: _________________________</p>
+                <p>Politecnico Máximo Gómez</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1120 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 10% 20%, rgba(226, 240, 254, 0.9), rgba(206, 220, 240, 0.95)), 
+                linear-gradient(125deg, #eef2f8 0%, #d9e2ef 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    isolation: isolate;
+}
+
+/* Fondo decorativo sutil */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="none" stroke="%231a4a7a" stroke-width="0.5" d="M20 20 L80 20 M20 30 L80 30 M20 40 L80 40 M20 50 L80 50 M20 60 L80 60 M20 70 L80 70 M20 80 L80 80 M30 20 L30 80 M40 20 L40 80 M50 20 L50 80 M60 20 L60 80 M70 20 L70 80"/></svg>');
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.app-container {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ===== TARJETAS ===== */
+.card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(2px);
+    border-radius: 2rem;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 55px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== LOGIN ===== */
+.login-card {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem 2.2rem;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+}
+
+.intec-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.intec-header h1 {
+    font-size: 2.1rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0B2F5F, #1E6F9F, #2C8CBB);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.8px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo-container {
+    margin-top: 1rem;
+}
+
+.logo-politecnico {
+    max-width: 160px;
+    height: auto;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.logo-politecnico:hover {
+    transform: scale(1.02);
+}
+
+.login-section h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f3b5c;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #2c7da0;
+    padding-left: 1rem;
+}
+
+.input-group {
+    margin-bottom: 1.4rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a4a6f;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.2px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    border: 1.5px solid #e2ecf5;
+    border-radius: 1rem;
+    font-size: 0.95rem;
+    background: #ffffff;
+    transition: all 0.25s;
+    outline: none;
+    font-family: inherit;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #2c7da0;
+    box-shadow: 0 0 0 4px rgba(44, 125, 160, 0.15);
+    transform: scale(1.01);
+}
+
+.btn-primary {
+    background: linear-gradient(105deg, #1a5d8c, #124c73);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(105deg, #0f4a70, #0e3e5e);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover::after {
+    width: 200%;
+    height: 200%;
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(4px);
+    color: #1a5d8c;
+    border: 1px solid #cbdde9;
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.btn-secondary:hover {
+    background: white;
+    border-color: #2c7da0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -8px rgba(0,0,0,0.15);
+}
+
+.error-msg,
+.success-msg {
+    border-radius: 1rem;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+    animation: fadeSlide 0.3s ease-out;
+}
+
+.error-msg {
+    background: rgba(254, 226, 226, 0.95);
+    color: #b91c1c;
+    border-left: 4px solid #b91c1c;
+}
+
+.success-msg {
+    background: rgba(220, 252, 231, 0.95);
+    color: #15803d;
+    border-left: 4px solid #15803d;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== MODAL GLASSMORPH ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    animation: fadeInBack 0.2s ease;
+}
+
+@keyframes fadeInBack {
+    from { background: rgba(0,0,0,0); backdrop-filter: blur(0); }
+    to { background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); }
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    margin: auto;
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 90%;
+    max-width: 540px;
+    box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.2) inset;
+    animation: modalPop 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding-bottom: 0.8rem;
+}
+
+.modal-header h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0f3b5c, #1e6f9f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.close-modal {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #7c8ea0;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: #1e3a5f;
+    transform: rotate(90deg);
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard-card {
+    padding: 2rem 2rem 2rem;
+}
+
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(105deg, rgba(250, 252, 255, 0.95), rgba(243, 248, 254, 0.95));
+    backdrop-filter: blur(4px);
+    border-radius: 1.5rem;
+    padding: 1.3rem 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(44,125,160,0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.student-info h2 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0a4a6e;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #0a4a6e, #1f6f9f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.student-info p {
+    font-size: 0.9rem;
+    color: #4a627a;
+    margin-top: 0.3rem;
+}
+
+.logout-btn {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid #cbdde9;
+    padding: 0.55rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2c5a7a;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.logout-btn:hover {
+    background: white;
+    border-color: #2c7da0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px -6px rgba(0,0,0,0.1);
+}
+
+.grade-title {
+    text-align: center;
+    margin: 1.2rem 0 1.5rem;
+}
+
+.grade-title h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #1e4a76;
+    letter-spacing: 1px;
+    background: rgba(240, 246, 254, 0.8);
+    backdrop-filter: blur(4px);
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 3rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.grade-section {
+    margin-bottom: 2.2rem;
+}
+
+.grade-section h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e4a76;
+    margin-bottom: 1rem;
+    border-left: 5px solid #2c7da0;
+    padding-left: 1rem;
+    background: linear-gradient(90deg, rgba(44,125,160,0.05), transparent);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 1.2rem;
+    background: white;
+    border: 1px solid #eef2f8;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    transition: all 0.2s;
+}
+
+.table-responsive:hover {
+    box-shadow: 0 6px 12px -8px rgba(0,0,0,0.05);
+}
+
+/* Tabla */
+.boletin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.boletin-table th,
+.boletin-table td {
+    padding: 0.85rem 0.5rem;
+    text-align: center;
+    border: 1px solid #ecf3f9;
+    vertical-align: middle;
+    transition: background 0.15s;
+}
+
+.boletin-table th {
+    background: #f9fdfe;
+    font-weight: 800;
+    color: #1f4662;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #d9e4ef;
+}
+
+.boletin-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    background-color: #fefefe;
+    font-size: 0.76rem;
+    padding-left: 1rem;
+}
+
+.boletin-table tr:hover td {
+    background: rgba(44, 125, 160, 0.03);
+}
+
+.main-table td:first-child {
+    font-weight: 700;
+}
+
+.modulos-table td:first-child {
+    font-weight: 500;
+}
+
+.small-table th,
+.small-table td {
+    padding: 0.6rem;
+}
+
+.average-row {
+    background: #f3f8fe;
+    font-weight: 800;
+}
+
+.average-row td {
+    border-top: 2px solid #cfe0ef;
+    background: #fafdff;
+    font-size: 0.82rem;
+}
+
+.promedio-general {
+    font-size: 0.88rem;
+    font-weight: 800;
+    background: linear-gradient(105deg, #eaf3fc, #e0edf8);
+    color: #0c4a6e;
+    border-radius: 1rem;
+    padding: 0.25rem 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.02), 0 1px 1px rgba(0,0,0,0.02);
+}
+
+.legend {
+    background: rgba(248, 251, 254, 0.9);
+    backdrop-filter: blur(4px);
+    border-radius: 1.2rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #e2edf7;
+    font-size: 0.72rem;
+    color: #2c5a7a;
+    text-align: center;
+    font-weight: 500;
+}
+
+.footer-note {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.7rem;
+    color: #6a7c9e;
+    border-top: 1px solid #e2edf7;
+    padding-top: 1rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #eef2f8;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #b7ccdf;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #2c7da0;
+}
+
+/* Responsive */
+@media (max-width: 1300px) {
+    .boletin-table {
+        font-size: 0.7rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.6rem 0.3rem;
+    }
+    .boletin-table td:first-child {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        padding: 1rem;
+    }
+    .dashboard-card {
+        padding: 1.2rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .student-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+    .student-info h2 {
+        font-size: 1.2rem;
+    }
+    .grade-title h3 {
+        font-size: 1.1rem;
+        padding: 0.3rem 1.2rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.4rem 0.2rem;
+        font-size: 0.6rem;
+    }
+    .login-card {
+        padding: 1.5rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MÁXIMO DETALLE
+   ============================================ */
+
+/* Dispositivos extra grandes (desktops HD, 1400px en adelante) */
+@media (min-width: 1400px) {
+    .app-container {
+        max-width: 1600px;
+    }
+    .boletin-table {
+        font-size: 0.8rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.9rem 0.6rem;
+    }
+    .student-info h2 {
+        font-size: 1.6rem;
+    }
+    .grade-title h3 {
+        font-size: 1.6rem;
+    }
+    .grade-section h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Escritorio grande (1200px - 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .app-container {
+        max-width: 1400px;
+    }
+    .boletin-table {
+        font-size: 0.75rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.7rem 0.5rem;
+    }
+}
+
+/* Escritorio medio / laptop (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    body {
+        padding: 1.2rem;
+    }
+    .dashboard-card {
+        padding: 1.5rem;
+    }
+    .boletin-table {
+        font-size: 0.7rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.6rem 0.4rem;
+    }
+    .boletin-table td:first-child {
+        min-width: 140px;
+    }
+    .student-info h2 {
+        font-size: 1.25rem;
+    }
+    .grade-title h3 {
+        font-size: 1.25rem;
+    }
+    .grade-section h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet horizontal / landscape (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    body {
+        padding: 1rem;
+    }
+    .dashboard-card {
+        padding: 1.2rem;
+    }
+    .student-header {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 1rem 1.2rem;
+    }
+    .student-info h2 {
+        font-size: 1.1rem;
+    }
+    .student-info p {
+        font-size: 0.75rem;
+    }
+    .grade-title h3 {
+        font-size: 1.1rem;
+        padding: 0.3rem 1.2rem;
+    }
+    .boletin-table {
+        font-size: 0.65rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.5rem 0.3rem;
+    }
+    .boletin-table td:first-child {
+        min-width: 130px;
+        font-size: 0.7rem;
+    }
+    .legend {
+        font-size: 0.65rem;
+        padding: 0.6rem;
+    }
+    .footer-note {
+        font-size: 0.65rem;
+    }
+}
+
+/* Tablet vertical / portrait (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    body {
+        padding: 0.8rem;
+    }
+    .login-card {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+    .dashboard-card {
+        padding: 1rem;
+    }
+    .student-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.7rem;
+        padding: 1rem;
+    }
+    .student-info h2 {
+        font-size: 1rem;
+    }
+    .student-info p {
+        font-size: 0.7rem;
+    }
+    .grade-title h3 {
+        font-size: 1rem;
+        padding: 0.25rem 1rem;
+    }
+    .grade-section h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+    .boletin-table {
+        font-size: 0.6rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.4rem 0.2rem;
+    }
+    .boletin-table td:first-child {
+        min-width: 120px;
+        font-size: 0.65rem;
+    }
+    .modulos-table td:first-child {
+        font-size: 0.6rem;
+    }
+    .promedio-general {
+        font-size: 0.7rem;
+    }
+    .legend {
+        font-size: 0.6rem;
+        padding: 0.5rem;
+    }
+    .footer-note {
+        font-size: 0.6rem;
+    }
+    .modal-content {
+        padding: 1.2rem;
+        width: 95%;
+    }
+    .modal-header h3 {
+        font-size: 1.2rem;
+    }
+    .input-group input,
+    .input-group select {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Teléfonos grandes (480px - 575px) */
+@media (min-width: 480px) and (max-width: 575px) {
+    body {
+        padding: 0.6rem;
+    }
+    .login-card {
+        padding: 1.2rem;
+    }
+    .intec-header h1 {
+        font-size: 1.5rem;
+    }
+    .dashboard-card {
+        padding: 0.8rem;
+    }
+    .student-header {
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.8rem;
+    }
+    .student-info h2 {
+        font-size: 0.95rem;
+    }
+    .student-info p {
+        font-size: 0.65rem;
+    }
+    .grade-title h3 {
+        font-size: 0.9rem;
+        padding: 0.2rem 0.8rem;
+    }
+    .grade-section h3 {
+        font-size: 0.85rem;
+        border-left-width: 3px;
+        padding-left: 0.6rem;
+    }
+    .boletin-table {
+        font-size: 0.55rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.35rem 0.15rem;
+    }
+    .boletin-table td:first-child {
+        min-width: 110px;
+        font-size: 0.6rem;
+        padding-left: 0.4rem;
+    }
+    .promedio-general {
+        font-size: 0.65rem;
+    }
+    .legend {
+        font-size: 0.55rem;
+        padding: 0.4rem;
+    }
+    .footer-note {
+        font-size: 0.55rem;
+    }
+    .modal-content {
+        padding: 1rem;
+    }
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+    .input-group {
+        margin-bottom: 0.8rem;
+    }
+    .input-group input,
+    .input-group select {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.8rem;
+    }
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Teléfonos pequeños (menos de 480px) */
+@media (max-width: 479px) {
+    body {
+        padding: 0.4rem;
+    }
+    .login-card {
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+    .intec-header h1 {
+        font-size: 1.3rem;
+    }
+    .logo-politecnico {
+        max-width: 100px;
+    }
+    .login-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    .dashboard-card {
+        padding: 0.6rem;
+    }
+    .student-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.7rem;
+        border-radius: 1rem;
+    }
+    .student-info h2 {
+        font-size: 0.85rem;
+    }
+    .student-info p {
+        font-size: 0.6rem;
+    }
+    .logout-btn {
+        padding: 0.3rem 1rem;
+        font-size: 0.7rem;
+    }
+    .grade-title {
+        margin: 0.5rem 0;
+    }
+    .grade-title h3 {
+        font-size: 0.85rem;
+        padding: 0.2rem 0.6rem;
+    }
+    .grade-section {
+        margin-bottom: 1rem;
+    }
+    .grade-section h3 {
+        font-size: 0.8rem;
+        border-left-width: 3px;
+        padding-left: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .boletin-table {
+        font-size: 0.5rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.3rem 0.1rem;
+    }
+    .boletin-table td:first-child {
+        min-width: 90px;
+        font-size: 0.55rem;
+        padding-left: 0.2rem;
+    }
+    .modulos-table td:first-child {
+        font-size: 0.5rem;
+    }
+    .small-table th,
+    .small-table td {
+        padding: 0.3rem;
+    }
+    .promedio-general {
+        font-size: 0.6rem;
+    }
+    .legend {
+        font-size: 0.5rem;
+        padding: 0.3rem;
+    }
+    .footer-note {
+        font-size: 0.5rem;
+        padding-top: 0.6rem;
+        margin-top: 0.8rem;
+    }
+    .modal-content {
+        padding: 0.8rem;
+        border-radius: 1rem;
+    }
+    .modal-header h3 {
+        font-size: 1rem;
+    }
+    .close-modal {
+        font-size: 1.5rem;
+    }
+    .input-group label {
+        font-size: 0.7rem;
+    }
+    .input-group input,
+    .input-group select {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        border-radius: 0.7rem;
+    }
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.4rem;
+        font-size: 0.75rem;
+        border-radius: 0.7rem;
+    }
+    .error-msg,
+    .success-msg {
+        font-size: 0.7rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Orientación horizontal en móviles (landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 0.5rem;
+    }
+    .student-header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.6rem 1rem;
+    }
+    .student-info h2 {
+        font-size: 0.9rem;
+    }
+    .student-info p {
+        font-size: 0.65rem;
+    }
+    .grade-title h3 {
+        font-size: 0.9rem;
+    }
+    .boletin-table {
+        font-size: 0.55rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        padding: 0.3rem 0.2rem;
+    }
+    .login-card {
+        max-width: 90%;
+        margin: 1rem auto;
+    }
+}
+
+/* Ajustes para impresión (si se desea imprimir el boletín) */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        border-radius: 0;
+    }
+    .btn-primary,
+    .btn-secondary,
+    .logout-btn,
+    #showRegisterBtn,
+    .modal,
+    .register-trigger,
+    .login-section .btn-primary,
+    .footer-note p:first-child {
+        display: none !important;
+    }
+    .student-header {
+        background: none;
+        border: none;
+        padding: 0.5rem 0;
+    }
+    .grade-title h3 {
+        background: none;
+        padding: 0;
+        font-size: 1.2rem;
+    }
+    .boletin-table th,
+    .boletin-table td {
+        border: 1px solid #aaa;
+    }
+    .legend {
+        border: 1px solid #ccc;
+        background: none;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+}
+
+/* Mejoras de accesibilidad para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .btn-primary,
+    .btn-secondary,
+    .logout-btn,
+    .close-modal {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    .input-group input,
+    .input-group select {
+        font-size: 16px; /* evita zoom en iOS */
+    }
+}
+
+/* Alto contraste para lectores de pantalla (preferencia del usuario) */
+@media (prefers-contrast: high) {
+    .boletin-table th,
+    .boletin-table td {
+        border: 1px solid black;
+    }
+    .average-row td {
+        background: #e0e0e0;
+    }
+    .promedio-general {
+        background: #d0d0d0;
+        color: black;
+    }
+}
+
+/* Separación entre botón de login y botón de registro */
+.login-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(44, 125, 160, 0.2);
+}
+
+.register-trigger {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.register-trigger .btn-secondary {
+    margin-top: 0.25rem;
+}
+
+/* Mejora visual para la separación */
+.login-section .btn-primary {
+    margin-bottom: 0.5rem;
+}
+
+.register-trigger {
+    position: relative;
+}
+
+.register-trigger::before {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(44, 125, 160, 0.3), transparent);
+}
+
+/* Espaciado adicional para pantallas pequeñas */
+@media (max-width: 768px) {
+    .login-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .register-trigger {
+        margin-top: 0.25rem;
+    }
+    
+    .register-trigger::before {
+        top: -0.8rem;
+    }
+}
